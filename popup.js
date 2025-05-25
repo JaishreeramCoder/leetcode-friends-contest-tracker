@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
             contentDiv.appendChild(msg);
             return;
         }
-
+    
         Object.entries(friends).forEach(([slug, info]) => {
             const item = document.createElement('div');
             item.className = 'friend-item';
-
+    
             // Info column
             const infoCol = document.createElement('div');
             infoCol.className = 'friend-info';
@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const lastSub = document.createElement('p');
             lastSub.className = 'friend-last-submission';
             lastSub.textContent = 'Last Submission: Loading...';
-
+    
             infoCol.append(name, slugDiv, rating, lastSub);
-
+    
             // Fetch contest rating
             const ratingQuery = `
                 query userContestRankingInfo($username: String!) {
@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch(() => {
                     rating.textContent = 'Rating: N/A';
                 });
-
-            // Fetch last submission date
+    
+            // Fetch last submission date across up to 3 years
             const calQuery = `
                 query userProfileCalendar($username: String!, $year: Int) {
                     matchedUser(username: $username) {
@@ -76,34 +76,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             `;
             const currentYear = new Date().getFullYear();
-            gqlFetch(calQuery, { username: slug, year: currentYear })
-                .then(data => {
-                    const calendar = JSON.parse(data.matchedUser?.userCalendar?.submissionCalendar || '{}');
-                    const timestamps = Object.keys(calendar).map(ts => parseInt(ts, 10));
-                    if (timestamps.length) {
-                        const lastTs = Math.max(...timestamps);
-                        const dateObj = new Date(lastTs * 1000);
-                        if (isNaN(dateObj)) {
-                            lastSub.textContent = 'Last Submission: N/A';
+            const yearsToCheck = [currentYear, currentYear - 1, currentYear - 2];
+            function checkYear(index) {
+                if (index >= yearsToCheck.length) {
+                    lastSub.textContent = 'Last Submission: No submission in the last 2 years';
+                    return;
+                }
+                gqlFetch(calQuery, { username: slug, year: yearsToCheck[index] })
+                    .then(data => {
+                        const calendar = JSON.parse(data.matchedUser?.userCalendar?.submissionCalendar || '{}');
+                        const timestamps = Object.keys(calendar).map(ts => parseInt(ts, 10));
+                        if (timestamps.length) {
+                            const lastTs = Math.max(...timestamps);
+                            const dateObj = new Date(lastTs * 1000);
+                            if (isNaN(dateObj)) {
+                                lastSub.textContent = 'Last Submission: N/A';
+                            } else {
+                                const dateStr = dateObj.toLocaleDateString('en-IN', {
+                                    timeZone: 'Asia/Kolkata',
+                                    day: 'numeric', month: 'short', year: 'numeric'
+                                });
+                                lastSub.textContent = `Last Submission:\n ${dateStr}`;
+                            }
                         } else {
-                            const dateStr = dateObj.toLocaleDateString('en-IN', {
-                                timeZone: 'Asia/Kolkata',
-                                day: 'numeric', month: 'short', year: 'numeric'
-                            });
-                            lastSub.textContent = `Last Submission:\n ${dateStr}`;
+                            checkYear(index + 1);
                         }
-                    } else {
-                        lastSub.textContent = 'Last Submission: N/A';
-                    }
-                })
-                .catch(() => {
-                    lastSub.textContent = 'Last Submission: N/A';
-                });
-
+                    })
+                    .catch(() => {
+                        checkYear(index + 1);
+                    });
+            }
+            checkYear(0);
+    
             // Actions column
             const actions = document.createElement('div');
             actions.className = 'friend-actions';
-
+    
             // LeetCode icon
             const icon = document.createElement('img');
             icon.className = 'icon';
@@ -113,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.stopPropagation();
                 chrome.tabs.create({ url: `https://leetcode.com/u/${slug}/` });
             });
-
+    
             // Unfriend button
             const btn = document.createElement('button');
             btn.textContent = 'Unfriend';
@@ -128,19 +136,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
             });
-
+    
             actions.append(icon, btn);
             item.append(infoCol, actions);
-
+    
             // Clicking the row opens profile
             item.addEventListener('click', () => {
                 chrome.tabs.create({ url: `https://leetcode.com/u/${slug}/` });
             });
-
+    
             contentDiv.appendChild(item);
         });
     }
-
+    
     function loadAndRender() {
         chrome.storage.local.get('friendsList', data => {
             renderFriends(data.friendsList);
