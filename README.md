@@ -67,7 +67,7 @@ A Chrome extension that enhances the LeetCode contest ranking page by allowing y
 * **Friend Star Injection**:
 
   * Uses a custom `waitForXPath()` helper to locate LeetCode's dynamically rendered span elements (text = "Rank").
-  * Injects a star icon element; on click, stores friend data (`username`, `user_slug`, `country`) in Chrome local storage.
+  * Injects a star icon element; on click, stores friend data (`username`, `user_slug`) in Chrome local storage.
 * **Rendering Friends Tab**:
 
   * Listens for URLs matching `/contest/api/ranking/{contestKey}/...`.
