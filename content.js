@@ -72,6 +72,7 @@
 	}
 		
 		// ── TAB STATE UTIL ──
+		// This is primarily used for updating the tab states when switching between Global, Friends, and LLM views.
 	function setTabState(activeBtn) {
 			const tabGroup = activeBtn.parentElement;
 			const buttons = Array.from(tabGroup.querySelectorAll('button'));
@@ -644,6 +645,8 @@
 	}
 
 	// ── SPA NAV OBSERVER ──
+	// This observer detects when the user navigates to a different contest ranking page
+	// This is helpful for SPA since, reloads are not triggered when someone navigates to a different contest ranking page.
 	let lastPath = location.pathname;
 	new MutationObserver(() => {
 		if (location.pathname !== lastPath) {

@@ -1,4 +1,4 @@
-# LeetCode Friends Contest Tracking Extension
+# LeetCode Friends Extension
 
 A Chrome extension that enhances the LeetCode contest ranking page by allowing you to follow your friends and view their contest performance alongside the global rankings.
 
@@ -6,11 +6,18 @@ A Chrome extension that enhances the LeetCode contest ranking page by allowing y
 
 * ⭐ **Add Friends**: Click the star icon next to any user in the global ranking list to save them as a friend.
 * 📊 **Friends Tab**: A dedicated "Friends" button on the contest ranking page to toggle and display only your followed friends' performance.
+* 💬 **Fetching Modal**: If no friend rankings are cached yet, clicking **Friends** displays a modal prompting the user to wait a few seconds while data loads.
 * ⚡ **Fast Data Fetch**: Concurrently retrieves up to 12,500 rankings (first 500 pages) in \~90 seconds using batched asynchronous requests.
 * 💾 **Local Storage**: Caches contest rankings and friend lists in Chrome's local storage for instant reloads.
 * 🌐 **Country Flags**: Displays country emojis next to your friends' usernames for easy identification.
 * ⏱️ **Detailed Metrics**: Shows username, rank, total score, finish time (with penalties), and per-problem submission times.
 * 📢 **Popup Dashboard**: A browser action (popup) listing all your saved friends with their current contest rating and last submission date, linking directly to their LeetCode profiles.
+
+## UI Preview
+
+| Fetching Modal                                      | Friends Tab                                      | Popup Dashboard                     |
+| --------------------------------------------------- | ------------------------------------------------ | ----------------------------------- |
+| ![Fetching Results](ui-images/fetching_results.png) | ![Friends Rankings](ui-images/friends_ranks.png) | ![Popup](ui-images/popup_image.png) |
 
 ## Installation
 
@@ -21,7 +28,7 @@ A Chrome extension that enhances the LeetCode contest ranking page by allowing y
    ```
 2. Open Chrome and navigate to `chrome://extensions`.
 3. Enable **Developer mode** (top-right corner).
-4. Click **Load unpacked** and select the cloned `leetcode-friends contest-tracker` directory.
+4. Click **Load unpacked** and select the cloned `leetcode-friends-extension` directory.
 5. Pin the extension to your toolbar.
 
 ## Usage
@@ -29,11 +36,14 @@ A Chrome extension that enhances the LeetCode contest ranking page by allowing y
 1. **Add a friend**:
 
    * Go to any LeetCode contest ranking page (e.g., `https://leetcode.com/contest/biweekly-contest-156/ranking/1/?region=global_v2`).
-   * Click the ☆ icon next to a username to follow.
+   * Click the ⭐ icon next to a username to follow.
 2. **View friends in contest**:
 
    * On the ranking page, find the new **Friends** button between the Global and LLM buttons.
-   * Click **Friends** to filter and view only your followed users.
+   * Click **Friends**:
+
+     * If data is already cached, it filters and displays only your followed users.
+     * If not, a modal appears asking you to wait while it fetches results.
 3. **Browser popup**:
 
    * Click the extension icon to open the popup.
@@ -65,6 +75,10 @@ A Chrome extension that enhances the LeetCode contest ranking page by allowing y
   * Converts UNIX timestamps to IST finish times and calculates `hh:mm:ss` durations.
   * Maps country names (e.g., "United States") to flag emojis via a predefined lookup.
   * Builds a table mirroring LeetCode's style (alternating row colors) and appends under the Friends tab.
+* **Fetching Modal**:
+
+  * If no cache exists, renders a modal overlay informing the user that results are being fetched.
+  * Dismisses automatically once initial data batch completes.
 * **Tab Toggle Logic**:
 
   * Hides Global and LLM sections when Friends is active, updating `data-state`, `aria-state`, and `tabIndex` for proper keyboard accessibility.
@@ -92,6 +106,11 @@ const BATCH_SIZE = 250;
 const BATCH_DELAY_MS = 6000;
 const MAX_PAGES = 500; // fetches up to 12,500 users
 ```
+
+## Resources
+
+* 📹 **Demo Video**: [Watch on YouTube](INSERT_YOUTUBE_URL_HERE)
+* 📄 **Development Flow Document**: [Read the flow details](https://docs.google.com/document/d/1JiM4skOP-ovE9L6edUGRO_fWKWqp2wixcn3hw18gxWU/edit?tab=t.0)
 
 ## Contributing
 

@@ -1,6 +1,7 @@
+// document.addEventListener('DOMContentLoaded', () => {...} is used to ensure the DOM is fully loaded before running the script.
 document.addEventListener('DOMContentLoaded', () => {
     const contentDiv = document.getElementById('content');
-
+    // graphQL fetch function to interact with LeetCode's GraphQL API
     const gqlFetch = (query, variables) => {
         return fetch('https://leetcode.com/graphql', {
             method: 'POST',
