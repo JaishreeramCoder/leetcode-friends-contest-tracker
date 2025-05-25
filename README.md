@@ -1,4 +1,4 @@
-# LeetCode Friends Extension
+# LeetCode Friends Contest Tracker Extension
 
 A Chrome extension that enhances the LeetCode contest ranking page by allowing you to follow your friends and view their contest performance alongside the global rankings.
 
