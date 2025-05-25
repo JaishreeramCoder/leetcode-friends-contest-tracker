@@ -109,7 +109,7 @@ const MAX_PAGES = 500; // fetches up to 12,500 users
 
 ## Resources
 
-* 📹 **Demo Video**: [Watch on YouTube](INSERT_YOUTUBE_URL_HERE)
+* 📹 **Demo Video**: [Watch on YouTube](https://youtu.be/wUPa8KRKiaY?si=Jw9PafIj-Qd4HQZD)
 * 📄 **Development Flow Document**: [Read the flow details](https://docs.google.com/document/d/1JiM4skOP-ovE9L6edUGRO_fWKWqp2wixcn3hw18gxWU/edit?tab=t.0)
 
 ## Contributing
