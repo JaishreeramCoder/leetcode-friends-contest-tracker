@@ -35,11 +35,11 @@ A Chrome extension that enhances the LeetCode contest ranking page by allowing y
 
 1. **Add a friend**:
 
-   * Go to any LeetCode contest ranking page (e.g., `https://leetcode.com/contest/biweekly-contest-156/ranking/1/?region=global_v2`).
+   * Go to any LeetCode user profile page (e.g., `https://leetcode.com/u/non_deterministic/`).
    * Click the ⭐ icon next to a username to follow.
 2. **View friends in contest**:
 
-   * On the ranking page, find the new **Friends** button between the Global and LLM buttons.
+   * Go to any LeetCode contest ranking page (e.g., `https://leetcode.com/contest/biweekly-contest-156/ranking/1/?region=global_v2`), find the new **Friends** button between the Global and LLM buttons.
    * Click **Friends**:
 
      * If data is already cached, it filters and displays only your followed users.
