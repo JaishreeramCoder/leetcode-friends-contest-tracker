@@ -35,7 +35,7 @@ A Chrome extension that enhances the LeetCode contest ranking page by allowing y
 
 1. **Add a friend**:
 
-   * Go to any LeetCode user profile page (e.g., `https://leetcode.com/u/non_deterministic/`).
+   * Go to any LeetCode user's profile page (e.g., `https://leetcode.com/u/non_deterministic/`).
    * Click the ⭐ icon next to a username to follow.
 2. **View friends in contest**:
 
