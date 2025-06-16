@@ -4,10 +4,10 @@ A Chrome extension that enhances the LeetCode contest ranking page by allowing y
 
 ## Features
 
-* ⭐ **Add Friends**: Click the star icon next to any user in the global ranking list to save them as a friend.
+* ⭐ **Add Friends**: Click the star icon next to the username of the user's LeetCode profile page.
 * 📊 **Friends Tab**: A dedicated "Friends" button on the contest ranking page to toggle and display only your followed friends' performance.
 * 💬 **Fetching Modal**: If no friend rankings are cached yet, clicking **Friends** displays a modal prompting the user to wait a few seconds while data loads.
-* ⚡ **Fast Data Fetch**: Concurrently retrieves up to 12,500 rankings (first 500 pages) in \~90 seconds using batched asynchronous requests.
+* ⚡ **Fast Data Fetch**: Concurrently retrieves up to 12,500 rankings (first 500 pages) in \~100 seconds using batched asynchronous requests.
 * 💾 **Local Storage**: Caches contest rankings and friend lists in Chrome's local storage for instant reloads.
 * 🌐 **Country Flags**: Displays country emojis next to your friends' usernames for easy identification.
 * ⏱️ **Detailed Metrics**: Shows username, rank, total score, finish time (with penalties), and per-problem submission times.
