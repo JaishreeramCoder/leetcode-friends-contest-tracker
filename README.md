@@ -21,15 +21,29 @@ A Chrome extension that enhances the LeetCode contest ranking page by allowing y
 
 ## Installation
 
-1. Clone this repository:
+### 1. **From the Chrome Web Store**
 
-   ```bash
-   git clone https://github.com/JaishreeramCoder/leetcode-friends-contest-tracker.git
-   ```
-2. Open Chrome and navigate to `chrome://extensions`.
-3. Enable **Developer mode** (top-right corner).
-4. Click **Load unpacked** and select the cloned `leetcode-friends-extension` directory.
-5. Pin the extension to your toolbar.
+Install the latest release directly:  
+[LeetCode Friends Rank Checker – Chrome Web Store](https://chromewebstore.google.com/detail/LeetCode%20Friends%20Rank%20Checker/aajplhnjobdefcjgghdpanciaiioihhm)
+
+- Click **Add to Chrome**.  
+- Confirm by clicking **Add extension** in the popup.  
+- Pin the extension to your toolbar for easy access.
+
+---
+
+### 2. **(Optional) From Source**
+
+If you want to run a development build locally:
+
+```bash
+git clone https://github.com/JaishreeramCoder/leetcode-friends-contest-tracker.git
+```
+
+- Open Chrome and go to `chrome://extensions`.
+- Enable **Developer mode** (top-right).
+- Click **Load unpacked** and select the `leetcode-friends-extension` folder.
+- Pin the extension to your toolbar.
 
 ## Usage
 
